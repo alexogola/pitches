@@ -1,16 +1,18 @@
-{% extends 'base.html' %}
-{% import 'macros.html' as macro%}
+{% extends 'base.html'%}
+
+# imported form flask bootstrap allowing rendering of forms
+{% import "bootstrap/wtf.html" as wtf %}
 
 {% block content %}
+
+<h1>welcomr to category</h1>
+
 <div class="container">
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <div class="row">
-                {{macro.displayCategory(category)}}
-            </div>
-        </div>
-        <div class="col-md-2"></div>
-    </div>
+    <a href="{{url_for('main.category')}}">category</a>
+
 </div>
-{% endblock %}
+{{ wtf.quick_form(category_form) }}
+{% for category in business %}
+<p>{{category.title}}</p>
+{% endfor %}
+{% endblock%}

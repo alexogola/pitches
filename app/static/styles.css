@@ -1,0 +1,9 @@
+.container{
+    background-image: url('../photos/pitch.jpg');
+}
+
+h1 {
+  font-family: 'Bilbo Swash Caps';
+    font-size: 80px;
+    color: white;
+}

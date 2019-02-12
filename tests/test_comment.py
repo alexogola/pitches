@@ -1,26 +1,27 @@
 import unittest
-from app.models import Pitch, User, Comment
-from flask_login import current_user
+from app.models import Comment,User
 from app import db
 
-class TestPitch(unittest.TestCase):
-
+class CommentModelTest(unittest.TestCase):
     def setUp(self):
-        self.user_joe = User(username='joe',password='password',email='abc@defg.com')
-        self.new_pitch = Pitch(pitch_content = "This is my pitch", pitch_category='Business',user=self.user_joe)
-        self.new_comment = Comment(comment_content = "This is my comment", pitch=self.new_pitch, user=self.user_joe)
-    
-    def tearDown(self):
-        db.session.delete(self)
-        User.query.commit()
-        # my_user = db.session.query(User).filter(self.user.id==1).first()
-        # db.session.delete(my_user)
+        self.user_naiyoma = User(username = 'naiyoma',password = 'potato')
+        self.new_comment = Comment(description='comments',user = self.user_naiyoma)
 
-    def test_instance(self):
-        self.assertTrue(isinstance(self.new_comment,Comment))
-
+    # def tearDown(self):
+    #         Review.query.delete()
+    #         User.query.delete()
 
     def test_check_instance_variables(self):
-        self.assertEquals(self.new_comment.comment_content,"This is my comment")
-        self.assertEquals(self.new_comment.pitch,self.new_pitch)
-        self.assertEquals(self.new_comment.user,self.user_joe)
+        self.assertTrue(self.new_comment, Comment)
+        
+        # self.assertEquals(self.new_comment.user,self.user_naiyoma)
+
+    def test_save_comment(self):
+        self.new_comment.save_comment()
+        self.assertTrue(len(Comment.query.all())>0)
+
+    def test_get_comment_by_id(self):
+
+        self.new_comment.save_comment()
+        got_comments = Comment.get_comments(1234)
+        self.assertTrue(len(got_comments) > 0)        

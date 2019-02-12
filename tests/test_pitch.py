@@ -1,35 +1,28 @@
 import unittest
-from app.models import Pitch, User
-from flask_login import current_user
+from app.models import Pitch,User
 from app import db
 
-class TestPitch(unittest.TestCase):
-
+class PitchModelTest(unittest.TestCase):
     def setUp(self):
-        self.user_joe = User(username='joe',password='password',email='abc@defg.com')
-        self.new_pitch = Pitch(pitch_content = "This is my pitch", pitch_category='Business',user=self.user_joe)
-    
-    def tearDown(self):
-        Pitch.query.delete()
-        User.query.delete()
-        # my_user = db.session.query(User).filter(self.user.id==1).first()
-        # db.session.delete(my_user)
+        self.user_naiyoma = User(username = 'naiyoma',password = 'potato')
+        self.new_pitch = Pitch(name='cat',title='movie',description='moviereview',user =self.user_naiyoma, category='technology')
 
-    def test_instance(self):
-        self.assertTrue(isinstance(self.new_pitch,Pitch))
+    # def tearDown(self):
+    #     Pitch.query.delete()
+    #     User.query.delete()
 
+    def test_check_instance_variable(self):
+        self.assertEquals(self.new_pitch.name,'cat')
+        self.assertEquals(self.new_pitch.title,'movie')
+        self.assertEquals(self.new_pitch.description,'moviereview')
+        self.assertEquals(self.new_pitch.category, 'technology')
+        # self.assertEquals(self.new_pitch.user,self.user_naiyoma)  
 
-    def test_check_instance_variables(self):
-        self.assertEquals(self.new_pitch.pitch_content,"This is my pitch")
-        self.assertEquals(self.new_pitch.pitch_category,'Business')
-        self.assertEquals(self.new_pitch.user,self.user_joe)
+    def test_save_pitch(self):
+        self.new_pitch.save_pitch()
+        self.assertTrue(len(Pitch.query.all()) >0)
 
-
-    # def test_save_pitch(self):
-    #     self.new_pitch.save_pitch()
-    #     self.assertTrue(len(Pitch.query.all())>0)
-
-    # def test_get_all_pitches(self):
-    #     self.new_pitch.save_pitch()
-    #     get_pitches = Pitch.get_all_pitches()
-    #     self.assertTrue(len(get_pitches)==1)
+    def test_get_pitch_by_id(self):
+        self.new_pitch.save_pitch()
+        got_pitch = Pitch.get_pitches(12345)
+        self.assertTrue(len(got_pitch) > 0)    
