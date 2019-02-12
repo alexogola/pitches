@@ -5,7 +5,7 @@ from app import db
 #the setup method creates an instances of our user
 class UserModelTest(unittest.TestCase):
     def setUp(self):
-        self.new_user = User(username = 'naiyoma',password = 'lankas', email = 'lankas@gmail.com')
+        self.new_user = User(username = 'pakawa',password = 'lankas', email = 'lankas@gmail.com')
         
         
     #saving my users to my database

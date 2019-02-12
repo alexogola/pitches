@@ -4,8 +4,8 @@ from app import db
 
 class PitchModelTest(unittest.TestCase):
     def setUp(self):
-        self.user_naiyoma = User(username = 'naiyoma',password = 'potato')
-        self.new_pitch = Pitch(name='cat',title='movie',description='moviereview',user =self.user_naiyoma, category='technology')
+        self.user_pakawa = User(username = 'pakawa',password = 'potato')
+        self.new_pitch = Pitch(name='cat',title='movie',description='moviereview',user =self.user_pakawa, category='technology')
 
     # def tearDown(self):
     #     Pitch.query.delete()
@@ -16,7 +16,7 @@ class PitchModelTest(unittest.TestCase):
         self.assertEquals(self.new_pitch.title,'movie')
         self.assertEquals(self.new_pitch.description,'moviereview')
         self.assertEquals(self.new_pitch.category, 'technology')
-        # self.assertEquals(self.new_pitch.user,self.user_naiyoma)  
+        # self.assertEquals(self.new_pitch.user,self.user_pakawa)  
 
     def test_save_pitch(self):
         self.new_pitch.save_pitch()
