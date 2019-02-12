@@ -4,7 +4,7 @@ from app import db
 
 class PitchModelTest(unittest.TestCase):
     def setUp(self):
-        self.user_pakawa = User(username = 'pakawa',password = 'potato')
+        self.user_pakawa = User(username = 'pakawa',password = 'password')
         self.new_pitch = Pitch(name='cat',title='movie',description='moviereview',user =self.user_pakawa, category='technology')
 
     # def tearDown(self):
