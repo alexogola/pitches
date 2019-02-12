@@ -38,7 +38,6 @@ export DATABASE_URL='postgresql+psycopg2://username:password@localhost/pitches'
 
 export SECRET_KEY='Your secret key'
 
-key'
 
 ## Run Database Migrations
 
@@ -57,9 +56,9 @@ Open the browser on http://localhost:5000/
 ## Behaviour driven development
 | Behaviour   |      Input     |  Output |
 |----------|:-------------:|------:|
-| View Business sources | Click on the BUSINESS button |   Scrolls the page to the BUSINESS section |
-| View Entertainment sources | Click on the ENTERTAINMENT button |   Scrolls the page to the ENTERTAINMENT section |
-| View Sports sources | Click on the SPORTS button |  Scrolls the page to the SPORTS section |
+| Sign up | Enter email and password |   Sign in successful |
+| Log in | Enter email and password |   Login successful |
+| Pitch | Enter pitch and click submit button |  Pitch published successful |
 
 
 ## License
